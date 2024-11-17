@@ -72,7 +72,7 @@ class AbsensiController extends Controller
         }
 
         // Ambil data karyawan dan absensi
-        $data_karyawan = User::with(['absensi' => function ($query) use ($tanggal_dari, $tanggal_sampai) {
+        $data_karyawan = User::where('jabatan', 'Karyawan')->with(['absensi' => function ($query) use ($tanggal_dari, $tanggal_sampai) {
             $query->whereBetween('created_at', [$tanggal_dari, $tanggal_sampai]);
         }])->get()->map(function ($karyawan) use ($tanggal_range) {
             // Group absensi berdasarkan tanggal

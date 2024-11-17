@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Star Admin2 </title>
+	<title>SIMPEG</title>
 	<!-- plugins:css -->
 	<link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -83,7 +83,7 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="">
 							<i class="mdi mdi-grid-large menu-icon"></i>
 							<span class="menu-title">Dashboard</span>
 						</a>
@@ -103,22 +103,24 @@
 							</ul>
 						</div>
 					</li>
+					@if (Auth()->user()->jabatan == 'Admin')
+						<li class="nav-item nav-category">Karyawan</li>
+						<li class="nav-item">
+							<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false"
+								aria-controls="karyawan">
+								<i class="fa fa-users menu-icon"></i>
+								<span class="menu-title">Karyawan</span>
+								<i class="menu-arrow"></i>
+							</a>
+							<div class="collapse" id="karyawan">
+								<ul class="nav flex-column sub-menu">
+									<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
+									<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
+								</ul>
+							</div>
+						</li>
+					@endif
 
-					<li class="nav-item nav-category">Karyawan</li>
-					<li class="nav-item">
-						<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false"
-							aria-controls="karyawan">
-							<i class="fa fa-users menu-icon"></i>
-							<span class="menu-title">Karyawan</span>
-							<i class="menu-arrow"></i>
-						</a>
-						<div class="collapse" id="karyawan">
-							<ul class="nav flex-column sub-menu">
-								<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
-								<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
-							</ul>
-						</div>
-					</li>
 				</ul>
 			</nav>
 			<!-- partial -->
