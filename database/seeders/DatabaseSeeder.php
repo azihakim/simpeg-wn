@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'nama' => 'Test User',
-            'jabatan' => 'Pelamar',
+            'jabatan' => 'Admin',
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
