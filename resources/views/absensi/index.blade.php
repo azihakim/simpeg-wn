@@ -36,9 +36,11 @@
 								<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
 									Absen
 								</button>
-								<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#rekapAbsensi">
-									Rekap Absen
-								</button>
+								@if (Auth::user()->jabatan == 'Admin')
+									<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#rekapAbsensi">
+										Rekap Absen
+									</button>
+								@endif
 							</div>
 						</div>
 						<table id="example" class="display" style="width:100%">
