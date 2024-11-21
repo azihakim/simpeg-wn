@@ -67,19 +67,19 @@ class DatabaseSeeder extends Seeder
 
         $jabatan = [
             [
-                'jabatan' => 'Software Engineer'
+                'jabatan' => 'Admin'
             ],
             [
-                'jabatan' => 'UI/UX Designer'
+                'jabatan' => 'Supervisor'
             ],
             [
-                'jabatan' => 'Data Scientist'
+                'jabatan' => 'Supir (Luar Kota/Dalam Kota)'
             ],
             [
-                'jabatan' => 'Product Manager'
+                'jabatan' => 'Checker'
             ],
             [
-                'jabatan' => 'Quality Assurance'
+                'jabatan' => 'Gudang'
             ],
         ];
         foreach ($jabatan as $j) {
