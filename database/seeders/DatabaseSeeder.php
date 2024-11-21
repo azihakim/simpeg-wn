@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'nama' => 'Test User',
+            'nama' => 'Test Admin',
             'jabatan' => 'Admin',
             'status' => '',
             'status_kerja' => '',
@@ -35,6 +35,18 @@ class DatabaseSeeder extends Seeder
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
             'username' => 'admin',
+            'password' => bcrypt('123'),
+        ]);
+        User::create([
+            'nama' => 'Test karyawn',
+            'jabatan' => 'Karyawan',
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'karyawan',
             'password' => bcrypt('123'),
         ]);
 
@@ -75,7 +87,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // Pastikan ada data di tabel users sebelum menjalankan seeder ini
-        $users = User::all();
+        $users = User::where('jabatan', 'Karyawan')->get();
 
         if ($users->isEmpty()) {
             $this->command->warn('Tidak ada data karyawan di tabel users. Harap jalankan UserSeeder terlebih dahulu.');

@@ -104,7 +104,6 @@ class AbsensiController extends Controller
                 'persentase' => round($persentase, 2),
             ];
         });
-
         // return view('absensi.rekapPdf', compact('tanggal_dari', 'tanggal_sampai', 'tanggal_range', 'data_karyawan'));
         $pdf = FacadePdf::loadView('absensi.rekapPdf', compact('tanggal_dari', 'tanggal_sampai', 'tanggal_range', 'data_karyawan'))
             ->setPaper('a3', 'landscape');

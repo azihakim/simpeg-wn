@@ -64,10 +64,16 @@
 							<div class="dropdown-header text-center">
 								<i class="img-md rounded-circle fa fa-user-circle-o"></i>
 								{{-- <img class="img-md rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image"> --}}
-								<p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
-								<p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+								<p class="mb-1 mt-3 fw-semibold">{{ Auth::user()->nama }}</p>
+								<p class="fw-light text-muted mb-0">{{ Auth::user()->jabatan }}</p>
 							</div>
-							<a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+							<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+								{{ __('Log Out') }}
+							</a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
 						</div>
 					</li>
 				</ul>
@@ -118,6 +124,12 @@
 									<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
 								</ul>
 							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">
+								<i class="mdi mdi-calendar menu-icon"></i>
+								<span class="menu-title">Cuti/Izin</span>
+							</a>
 						</li>
 					@endif
 
