@@ -109,7 +109,7 @@
 							</ul>
 						</div>
 					</li>
-					@if (Auth()->user()->jabatan == 'Admin')
+					@if (Auth()->user()->jabatan != 'Pelamar')
 						<li class="nav-item nav-category">Karyawan</li>
 						<li class="nav-item">
 							<a class="nav-link" data-bs-toggle="collapse" href="#karyawan" aria-expanded="false"
