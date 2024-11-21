@@ -25,10 +25,12 @@
 							<div>
 								<h4 class="card-title">List Karyawn</h4>
 							</div>
-							<div>
-								<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
-									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
-							</div>
+							@if (Auth::user()->jabatan == 'Admin')
+								<div>
+									<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
+										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
+								</div>
+							@endif
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
