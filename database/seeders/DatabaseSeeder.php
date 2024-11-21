@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         Lowongan::create(
             [
-                'jabatan' => 'Software Engineer',
+                'jabatan' => 'Checker',
                 'status' => 'aktif',
                 'deskripsi' => 'Membuat aplikasi berbasis web'
             ]

@@ -34,13 +34,14 @@
 								<select name="pelamar" class="form-control" id="pelamarSelect" style="width:100%">
 									<option value="">Pilih Calon Karyawan</option>
 									@foreach ($pelamar as $item)
-										<option value="{{ $item->id }}" data-nama="{{ $item->user->nama }}" data-umur="{{ $item->user->umur }}"
+										<option value="{{ $item->user->id }}" data-nama="{{ $item->user->nama }}" data-umur="{{ $item->user->umur }}"
 											data-alamat="{{ $item->user->alamat }}" data-telepon="{{ $item->user->telepon }}"
-											data-jenis_kelamin="{{ $item->user->jenis_kelamin }}">
+											data-jenis_kelamin="{{ $item->user->jenis_kelamin }}" data-pelamarId="{{ $item->id }}">
 											{{ $item->user->nama }}
 										</option>
 									@endforeach
 								</select>
+								<input type="hidden" name="id_pelamar">
 							</div>
 							<div class="row">
 								<div class="col-md-4">
@@ -129,6 +130,12 @@
 					for (const option of jenisKelaminField.options) {
 						option.selected = option.value === jenisKelamin;
 					}
+				}
+
+				const pelamarId = selectedOption.getAttribute('data-pelamarId');
+				const idPelamarField = document.querySelector('input[name="id_pelamar"]');
+				if (idPelamarField) {
+					idPelamarField.value = pelamarId;
 				}
 			});
 		});
