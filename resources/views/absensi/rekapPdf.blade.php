@@ -52,11 +52,15 @@
 								$status = $karyawan['absensi'][$tanggal] ?? '-';
 								echo $status === '-'
 								    ? '-'
-								    : (str_contains($status, 'masuk') && str_contains($status, 'pulang')
-								        ? 'MP'
-								        : (str_contains($status, 'masuk')
-								            ? 'M'
-								            : 'P'));
+								    : (str_contains($status, 'Cuti')
+								        ? 'C'
+								        : (str_contains($status, 'Izin')
+								            ? 'I'
+								            : (str_contains($status, 'masuk') && str_contains($status, 'pulang')
+								                ? 'MP'
+								                : (str_contains($status, 'masuk')
+								                    ? 'M'
+								                    : 'P'))));
 							@endphp
 						</td>
 					@endforeach

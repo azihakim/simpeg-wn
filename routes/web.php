@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\CutiIzinController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
@@ -63,6 +64,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
         Route::delete('/destroy/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
         Route::post('/rekap', [AbsensiController::class, 'rekap'])->name('absensi.rekap');
+    });
+
+    Route::prefix('cutiizin')->group(function () {
+        Route::get('/index', [CutiIzinController::class, 'index'])->name('cutiizin.index');
+        Route::get('/create', [CutiIzinController::class, 'create'])->name('cutiizin.create');
+        Route::post('/store', [CutiIzinController::class, 'store'])->name('cutiizin.store');
+        Route::get('/edit/{id}', [CutiIzinController::class, 'edit'])->name('cutiizin.edit');
+        Route::put('/update/{id}', [CutiIzinController::class, 'update'])->name('cutiizin.update');
+        Route::delete('/destroy/{id}', [CutiIzinController::class, 'destroy'])->name('cutiizin.destroy');
+        Route::put('/status/{id}', [CutiIzinController::class, 'status'])->name('cutiizin.status');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');

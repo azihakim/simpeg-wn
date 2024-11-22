@@ -17,4 +17,8 @@ class CutiIzin extends Model
         'keterangan',
         'status',
     ];
+    function user()
+    {
+        return $this->belongsTo(User::class, 'id_karyawan');
+    }
 }

@@ -122,17 +122,11 @@
 								<ul class="nav flex-column sub-menu">
 									<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
 									<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
+									<li class="nav-item"> <a class="nav-link" href="{{ route('cutiizin.index') }}">Cuti/Izin</a></li>
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="">
-								<i class="mdi mdi-calendar menu-icon"></i>
-								<span class="menu-title">Cuti/Izin</span>
-							</a>
-						</li>
 					@endif
-
 				</ul>
 			</nav>
 			<!-- partial -->
