@@ -127,6 +127,18 @@
 							</div>
 						</li>
 					@endif
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('promosidemosi.index') }}">
+							<i class="fa fa-sitemap menu-icon"></i>
+							<span class="menu-title">Promosi/Demosi</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('rewardpunishment.index') }}">
+							<i class="fa fa-legal menu-icon"></i>
+							<span class="menu-title">Reward/Punishment</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->
@@ -180,6 +192,10 @@
 	<script src="{{ asset('assets/js/select2.js') }}"></script>
 	<!-- End custom js for this page-->
 	@yield('js')
+
+	<script>
+		new DataTable('#example');
+	</script>
 </body>
 
 </html>

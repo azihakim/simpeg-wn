@@ -4,8 +4,10 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\CutiIzinController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PromosiDemosiController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RekrutmenController;
+use App\Http\Controllers\RewardPunishmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,6 +76,26 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}', [CutiIzinController::class, 'update'])->name('cutiizin.update');
         Route::delete('/destroy/{id}', [CutiIzinController::class, 'destroy'])->name('cutiizin.destroy');
         Route::put('/status/{id}', [CutiIzinController::class, 'status'])->name('cutiizin.status');
+    });
+
+    Route::prefix('promosidemosi')->group(function () {
+        Route::get('/index', [PromosiDemosiController::class, 'index'])->name('promosidemosi.index');
+        Route::get('/create', [PromosiDemosiController::class, 'create'])->name('promosidemosi.create');
+        Route::post('/store', [PromosiDemosiController::class, 'store'])->name('promosidemosi.store');
+        Route::get('/edit/{id}', [PromosiDemosiController::class, 'edit'])->name('promosidemosi.edit');
+        Route::put('/update/{id}', [PromosiDemosiController::class, 'update'])->name('promosidemosi.update');
+        Route::delete('/destroy/{id}', [PromosiDemosiController::class, 'destroy'])->name('promosidemosi.destroy');
+        Route::put('/status/{id}', [PromosiDemosiController::class, 'status'])->name('promosidemosi.status');
+    });
+
+    Route::prefix('rewardpunishment')->group(function () {
+        Route::get('/index', [RewardPunishmentController::class, 'index'])->name('rewardpunishment.index');
+        Route::get('/create', [RewardPunishmentController::class, 'create'])->name('rewardpunishment.create');
+        Route::post('/store', [RewardPunishmentController::class, 'store'])->name('rewardpunishment.store');
+        Route::get('/edit/{id}', [RewardPunishmentController::class, 'edit'])->name('rewardpunishment.edit');
+        Route::put('/update/{id}', [RewardPunishmentController::class, 'update'])->name('rewardpunishment.update');
+        Route::delete('/destroy/{id}', [RewardPunishmentController::class, 'destroy'])->name('rewardpunishment.destroy');
+        Route::put('/status/{id}', [RewardPunishmentController::class, 'status'])->name('rewardpunishment.status');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');

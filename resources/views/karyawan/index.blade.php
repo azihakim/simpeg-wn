@@ -39,7 +39,9 @@
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -49,14 +51,17 @@
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
-										<td>
-											<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-											{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+										@if (Auth::user()->jabatan == 'Admin')
+											<td>
+												<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+												{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 											</form> --}}
-										</td>
+											</td>
+										@endif
+
 									</tr>
 								@endforeach
 							</tbody>

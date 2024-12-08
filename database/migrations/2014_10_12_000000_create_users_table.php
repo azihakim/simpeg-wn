@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jabatan')->nullable();
+            $table->string('divisi')->nullable();
             $table->string('status')->nullable();
             $table->string('status_kerja')->nullable();
             $table->string('nik')->nullable();
