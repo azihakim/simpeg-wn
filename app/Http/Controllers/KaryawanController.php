@@ -65,7 +65,7 @@ class KaryawanController extends Controller
             // Save the changes
             $karyawan->save();
 
-            $pelamar = Rekrutmen::where('id', $request->id_pelamar)->first();
+            $pelamar = Rekrutmen::where('id_pelamar', $request->id_pelamar)->first();
             $pelamar->delete();
 
             return redirect()->back()->with('success', 'Data karyawan berhasil ditambahkan.');
