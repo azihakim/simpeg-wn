@@ -36,7 +36,7 @@
 									@foreach ($pelamar as $item)
 										<option value="{{ $item->user->id }}" data-nama="{{ $item->user->nama }}" data-umur="{{ $item->user->umur }}"
 											data-alamat="{{ $item->user->alamat }}" data-telepon="{{ $item->user->telepon }}"
-											data-jenis_kelamin="{{ $item->user->jenis_kelamin }}" data-pelamarId="{{ $item->id }}">
+											data-jenis_kelamin="{{ $item->user->jenis_kelamin }}" data-pelamarId="{{ $item->id_pelamar }}">
 											{{ $item->user->nama }}
 										</option>
 									@endforeach
