@@ -139,6 +139,12 @@
 							<span class="menu-title">Reward/Punishment</span>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('resign.index') }}">
+							<i class="fa fa-times-circle-o menu-icon"></i>
+							<span class="menu-title">Resign</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->

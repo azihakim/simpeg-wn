@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromosiDemosiController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\RekrutmenController;
+use App\Http\Controllers\ResignController;
 use App\Http\Controllers\RewardPunishmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -96,6 +97,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}', [RewardPunishmentController::class, 'update'])->name('rewardpunishment.update');
         Route::delete('/destroy/{id}', [RewardPunishmentController::class, 'destroy'])->name('rewardpunishment.destroy');
         Route::put('/status/{id}', [RewardPunishmentController::class, 'status'])->name('rewardpunishment.status');
+    });
+
+    Route::prefix('resign')->group(function () {
+        Route::get('/index', [ResignController::class, 'index'])->name('resign.index');
+        Route::get('/create', [ResignController::class, 'create'])->name('resign.create');
+        Route::post('/store', [ResignController::class, 'store'])->name('resign.store');
+        Route::get('/edit/{id}', [ResignController::class, 'edit'])->name('resign.edit');
+        Route::put('/update/{id}', [ResignController::class, 'update'])->name('resign.update');
+        Route::delete('/destroy/{id}', [ResignController::class, 'destroy'])->name('resign.destroy');
+        Route::put('/status/{id}', [ResignController::class, 'status'])->name('resign.status');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');
