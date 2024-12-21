@@ -59,6 +59,29 @@
 										<td>{{ $item->created_at->format('d F Y') }}</td>
 										<td>
 											@if (Auth::user()->jabatan == 'Admin')
+												<div class="dropdown">
+													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
+													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+														<div class="dropdown-divider"></div>
+
+														@if (Auth()->user()->jabatan == 'Admin')
+															<h6 class="dropdown-header">Ubah Status</h6>
+															<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Ditolak">
+																<button class="dropdown-item" type="submit">Tolak</button>
+															</form>
+															<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Diterima">
+																<button class="dropdown-item" type="submit">Terima</button>
+															</form>
+														@endif
+													</div>
+												</div>
 												<a href="{{ route('resign.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 												<form action="{{ route('resign.destroy', $item->id) }}" method="POST" class="d-inline">
 													@csrf

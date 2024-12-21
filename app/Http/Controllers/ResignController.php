@@ -98,4 +98,16 @@ class ResignController extends Controller
             return redirect()->route('resign.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
+    public function status($id, Request $request)
+    {
+        try {
+            $resign = Resign::find($id);
+            $resign->status = $request->status;
+            $resign->save();
+            return redirect()->route('resign.index')->with('success', 'Data berhasil diubah');
+        } catch (\Exception $e) {
+            return redirect()->route('resign.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
 }
