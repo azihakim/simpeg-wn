@@ -145,6 +145,12 @@
 							<span class="menu-title">Resign</span>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('penugasan.index') }}">
+							<i class="fa fa-vcard menu-icon"></i>
+							<span class="menu-title">Penugasan</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 			<!-- partial -->

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\CutiIzinController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromosiDemosiController;
 use App\Http\Controllers\RegistrasiController;
@@ -107,6 +108,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/update/{id}', [ResignController::class, 'update'])->name('resign.update');
         Route::delete('/destroy/{id}', [ResignController::class, 'destroy'])->name('resign.destroy');
         Route::put('/status/{id}', [ResignController::class, 'status'])->name('resign.status');
+    });
+
+    Route::prefix('penugasan')->group(function () {
+        Route::get('/index', [PenugasanController::class, 'index'])->name('penugasan.index');
+        Route::get('/create', [PenugasanController::class, 'create'])->name('penugasan.create');
+        Route::post('/store', [PenugasanController::class, 'store'])->name('penugasan.store');
+        Route::get('/edit/{id}', [PenugasanController::class, 'edit'])->name('penugasan.edit');
+        Route::put('/update/{id}', [PenugasanController::class, 'update'])->name('penugasan.update');
+        Route::delete('/destroy/{id}', [PenugasanController::class, 'destroy'])->name('penugasan.destroy');
+        Route::put('/status/{id}', [PenugasanController::class, 'status'])->name('penugasan.status');
     });
 });
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->name('registrasi.form');
