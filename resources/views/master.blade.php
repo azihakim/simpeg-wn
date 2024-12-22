@@ -126,31 +126,33 @@
 								</ul>
 							</div>
 						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('promosidemosi.index') }}">
+								<i class="fa fa-sitemap menu-icon"></i>
+								<span class="menu-title">Promosi/Demosi</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('rewardpunishment.index') }}">
+								<i class="fa fa-legal menu-icon"></i>
+								<span class="menu-title">Reward/Punishment</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('resign.index') }}">
+								<i class="fa fa-times-circle-o menu-icon"></i>
+								<span class="menu-title">Resign</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('penugasan.index') }}">
+								<i class="fa fa-vcard menu-icon"></i>
+								<span class="menu-title">Penugasan</span>
+							</a>
+						</li>
 					@endif
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('promosidemosi.index') }}">
-							<i class="fa fa-sitemap menu-icon"></i>
-							<span class="menu-title">Promosi/Demosi</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('rewardpunishment.index') }}">
-							<i class="fa fa-legal menu-icon"></i>
-							<span class="menu-title">Reward/Punishment</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('resign.index') }}">
-							<i class="fa fa-times-circle-o menu-icon"></i>
-							<span class="menu-title">Resign</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ route('penugasan.index') }}">
-							<i class="fa fa-vcard menu-icon"></i>
-							<span class="menu-title">Penugasan</span>
-						</a>
-					</li>
+
 				</ul>
 			</nav>
 			<!-- partial -->
