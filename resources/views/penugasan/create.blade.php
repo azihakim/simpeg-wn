@@ -43,7 +43,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
-										<label for="keterangan">Upload Surat Resign</label>
+										<label for="keterangan">Upload Surat Penugasan</label>
 										<div class="input-group col-xs-12">
 											<input required="" name="surat" type="file" class="form-control file-upload-info"
 												placeholder="Upload File">
