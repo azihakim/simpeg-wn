@@ -99,9 +99,9 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' ||
-							Auth::user()->jabatan == 'Direktur' ||
-							Auth::user()->jabatan == 'Pengadaan' ||
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
+							Auth::user()->jabatan == 'Admin' ||
 							Auth::user()->jabatan == 'Pelamar')
 						<li class="pt-2 pb-1">
 							<span class="nav-item nav-category">Rekrutmen</span>
@@ -120,10 +120,10 @@
 							</div>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' ||
-							Auth::user()->jabatan == 'Direktur' ||
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
 							Auth::user()->jabatan == 'Karyawan' ||
-							Auth::user()->jabatan == 'Pengadaan')
+							Auth::user()->jabatan == 'Admin')
 						<li class="pt-2 pb-1">
 							<span class="nav-item nav-category">Karyawan</span>
 						</li>
@@ -136,23 +136,23 @@
 							</a>
 							<div class="collapse" id="karyawan">
 								<ul class="nav flex-column sub-menu">
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 										<li class="nav-item"> <a class="nav-link" href="{{ route('karyawan.index') }}">Karyawan</a></li>
 									@endif
-									@if (Auth::user()->jabatan == 'Admin' ||
-											Auth::user()->jabatan == 'Man Keuangan' ||
-											Auth::user()->jabatan == 'Direktur' ||
+									@if (Auth::user()->jabatan == 'Super Admin' ||
+											Auth::user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Manajer' ||
 											Auth::user()->jabatan == 'Karyawan')
 										<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
 									@endif
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Karyawan')
 										<li class="nav-item"> <a class="nav-link" href="{{ route('cutiizin.index') }}">Cuti/Izin</a></li>
 									@endif
 								</ul>
 							</div>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin')
+					@if (Auth::user()->jabatan == 'Super Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('kontrak.index') }}">
 								<i class="fa fa-edit menu-icon"></i>
@@ -160,10 +160,10 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' ||
-							Auth::user()->jabatan == 'Direktur' ||
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
 							Auth::user()->jabatan == 'Karyawan' ||
-							Auth::user()->jabatan == 'Pengadaan')
+							Auth::user()->jabatan == 'Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('promosidemosi.index') }}">
 								<i class="fa fa-sitemap menu-icon"></i>
@@ -171,10 +171,10 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' ||
-							Auth::user()->jabatan == 'Direktur' ||
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
 							Auth::user()->jabatan == 'Karyawan' ||
-							Auth::user()->jabatan == 'Pengadaan')
+							Auth::user()->jabatan == 'Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('rewardpunishment.index') }}">
 								<i class="fa fa-legal menu-icon"></i>
@@ -182,7 +182,7 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin')
+					@if (Auth::user()->jabatan == 'Super Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('jabatan.index') }}">
 								<i class="fa fa-gears menu-icon"></i>
@@ -190,7 +190,7 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Karyawan')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('resign.index') }}">
 								<i class="fa fa-times-circle-o menu-icon"></i>
@@ -198,7 +198,7 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Karyawan')
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Karyawan')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('penugasan.index') }}">
 								<i class="fa fa-vcard menu-icon"></i>
@@ -206,10 +206,10 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' ||
-							Auth::user()->jabatan == 'Direktur' ||
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
 							Auth::user()->jabatan == 'Karyawan' ||
-							Auth::user()->jabatan == 'Pengadaan')
+							Auth::user()->jabatan == 'Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('phk.index') }}">
 								<i class="fa fa-warning menu-icon"></i>
@@ -217,7 +217,7 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('user.index') }}">
 								<i class="fa fa-user menu-icon"></i>

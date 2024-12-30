@@ -32,7 +32,7 @@
 									<th>Pelamar</th>
 									<th>Jabatan</th>
 									<th>Status</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -51,12 +51,12 @@
 												<label class="badge badge-success">{{ $item->status }}</label>
 											@endif
 										</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Pelamar')
 											<td>
 												@if ($item->status == 'Diajukan' && Auth::user()->jabatan == 'Pelamar')
 													<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 												@endif
-												@if (Auth()->user()->jabatan == 'Admin')
+												@if (Auth()->user()->jabatan == 'Super Admin')
 													<div class="dropdown">
 														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Respon</button>

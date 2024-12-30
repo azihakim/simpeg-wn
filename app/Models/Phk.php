@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Phk extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'id_karyawan',
-        'surat',
-    ];
+    protected $fillable = ['user_id', 'surat', 'keterangan'];
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

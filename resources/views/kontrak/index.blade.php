@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Data Kontrak</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('kontrak.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Kontrak</a>
@@ -41,7 +41,9 @@
 									<th>Surat</th>
 									<th>Keterangan</th>
 									<th>Tanggal Kontrak</th>
-									@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth()->user()->jabatan == 'Super Admin' ||
+											Auth()->user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -67,7 +69,7 @@
 										<td>{{ $item->keterangan }}</td>
 										<td>{{ \Carbon\Carbon::parse($item->mulai_kontrak)->format('d F Y') }} -
 											{{ \Carbon\Carbon::parse($item->akhir_kontrak)->format('d F Y') }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
@@ -75,7 +77,7 @@
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
 														<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
+														@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('kontrak.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
@@ -92,7 +94,7 @@
 														@endif
 													</div>
 												</div>
-												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 													<a href="{{ route('kontrak.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 													<form action="{{ route('kontrak.destroy', $item->id) }}" method="POST" class="d-inline">
 														@csrf

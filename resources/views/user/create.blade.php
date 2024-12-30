@@ -52,10 +52,9 @@
 									<label>Role</label>
 									<select required name="jabatan" class="form-control">
 										<option disabled selected>Pilih Role</option>
-										<option value="Direktur">Direktur</option>
-										<option value="Pengadaan">Pengadaan</option>
-										<option value="Man Keuangan">Man Keuangan</option>
-										<option value="Karyawan">Karyawan</option>
+										@foreach ($jabatan as $item)
+											<option value="{{ $item->nama_jabatan }}">{{ $item->nama_jabatan }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>

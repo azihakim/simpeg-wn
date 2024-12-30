@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Reward Punishment</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('rewardpunishment.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Reward/Punishment Karyawan</a>
@@ -42,7 +42,7 @@
 									<th>Reward</th>
 									<th>Surat Punishment</th>
 									<th>Status</th>
-									@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -63,9 +63,9 @@
 											@endif
 										</td>
 										<td>{{ $item->status }}</td>
-										@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan' || Auth::user()->jabatan == 'Direktur')
+										@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Manajer')
 											<td>
-												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 													<a href="{{ route('rewardpunishment.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
 													<form action="{{ route('rewardpunishment.destroy', $item->id) }}" method="POST"
 														style="display: inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
@@ -75,7 +75,7 @@
 													</form>
 												@endif
 
-												@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
 													<div class="dropdown">
 														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>

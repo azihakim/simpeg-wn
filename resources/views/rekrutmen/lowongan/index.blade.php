@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">List Lowongan</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Pengadaan' || Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Super Admin')
 								<div>
 									<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Lowongan</a>
@@ -55,7 +55,7 @@
 											<td style="text-align: center">
 												<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-outline-info btn-block">Daftar</a>
 											</td>
-										@elseif (Auth::user()->jabatan == 'Admin')
+										@elseif (Auth::user()->jabatan == 'Super Admin')
 											<td style="text-align: center">
 												<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 												<form action="{{ route('lowongan.destroy', $item->id) }}" method="post" style="display: inline">

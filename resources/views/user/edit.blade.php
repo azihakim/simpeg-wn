@@ -55,11 +55,10 @@
 									<label>Role</label>
 									<select required name="jabatan" class="form-control">
 										<option disabled>Pilih Role</option>
-										<option value="Direktur" {{ $data->jabatan == 'Direktur' ? 'selected' : '' }}>Direktur</option>
-										<option value="Pengadaan" {{ $data->jabatan == 'Pengadaan' ? 'selected' : '' }}>Pengadaan</option>
-										<option value="Man Keuangan" {{ $data->jabatan == 'Man Keuangan' ? 'selected' : '' }}>Man Keuangan</option>
-										<option value="Karyawan" {{ $data->jabatan == 'Karyawan' ? 'selected' : '' }}>Karyawan</option>
-										<option value="Pelamar" {{ $data->jabatan == 'Pelamar' ? 'selected' : '' }}>Pelamar</option>
+										@foreach ($jabatan as $item)
+											<option value="{{ $item->nama_jabatan }}" {{ $data->jabatan == $item->nama_jabatan ? 'selected' : '' }}>
+												{{ $item->nama_jabatan }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>

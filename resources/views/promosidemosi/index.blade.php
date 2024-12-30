@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Promosi Demosi</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('promosidemosi.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Promosi/Demosi Karyawan</a>
@@ -41,7 +41,7 @@
 									<th>Jabatan Baru</th>
 									<th>Tanggal</th>
 									<th>Status</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -56,7 +56,7 @@
 										<td>{{ $item->created_at->format('d/m/Y') }}</td>
 										<td>{{ $item->status }}</td>
 										<td>
-											@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+											@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 												<a href="{{ route('promosidemosi.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
 												<form action="{{ route('promosidemosi.destroy', $item->id) }}" method="POST" class="d-inline">
 													@csrf
@@ -65,7 +65,7 @@
 														onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
 												</form>
 											@endif
-											@if (Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Admin')
+											@if (Auth()->user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Super Admin')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>

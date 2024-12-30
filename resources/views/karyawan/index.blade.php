@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">List Karyawn</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
@@ -39,7 +39,7 @@
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -51,7 +51,7 @@
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 											<td>
 												<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 												{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">

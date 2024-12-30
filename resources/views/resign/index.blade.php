@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Data Resign</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Karyawan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Karyawan')
 								<div>
 									<a href="{{ route('resign.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Pengajuan Resign</a>
@@ -39,7 +39,7 @@
 									<th>Nama Karyawan</th>
 									<th>Status</th>
 									<th>Tanggal Pengajuan</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -59,15 +59,18 @@
 											@endif
 										</td>
 										<td>{{ $item->created_at->format('d F Y') }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+														<h6 class="dropdown-header">Cek Surat</h6>
+														<a class="dropdown-item" href="{{ asset('storage/surat_resign/' . $item->surat) }}" target="_blank">Cek
+															Berkas</a>
 														<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+														@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
@@ -84,7 +87,7 @@
 														@endif
 													</div>
 												</div>
-												@if (Auth::user()->jabatan == 'Admin')
+												@if (Auth::user()->jabatan == 'Super Admin')
 													<a href="{{ route('resign.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 													<form action="{{ route('resign.destroy', $item->id) }}" method="POST" class="d-inline">
 														@csrf

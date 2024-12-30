@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Data PHK</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+							@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('phk.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah PHK</a>
@@ -40,7 +40,9 @@
 									<th>Status</th>
 									<th>Surat</th>
 									<th>Keterangan</th>
-									@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+									@if (Auth()->user()->jabatan == 'Super Admin' ||
+											Auth()->user()->jabatan == 'Manajer' ||
+											Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -64,7 +66,7 @@
 												Surat</a>
 										</td>
 										<td>{{ $item->keterangan }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
@@ -72,7 +74,7 @@
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
 														<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
+														@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('phk.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
@@ -89,7 +91,7 @@
 														@endif
 													</div>
 												</div>
-												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 													<a href="{{ route('phk.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 													<form action="{{ route('phk.destroy', $item->id) }}" method="POST" class="d-inline">
 														@csrf

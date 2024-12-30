@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Data Penugasan</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Super Admin')
 								<div>
 									<a href="{{ route('penugasan.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Pengajuan Penugasan</a>
@@ -39,7 +39,7 @@
 									<th>Nama Karyawan</th>
 									<th>Status</th>
 									<th>Surat</th>
-									@if (Auth::user()->jabatan == 'Admin')
+									@if (Auth::user()->jabatan == 'Super Admin')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -54,7 +54,7 @@
 											<a href="{{ Storage::url('surat_penugasan/' . $item->surat) }}" class="btn btn-outline-info"
 												target="_blank">Cek Surat</a>
 										</td>
-										@if (Auth::user()->jabatan == 'Admin')
+										@if (Auth::user()->jabatan == 'Super Admin')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
@@ -62,7 +62,7 @@
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
 														<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Admin')
+														@if (Auth()->user()->jabatan == 'Super Admin')
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('penugasan.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
