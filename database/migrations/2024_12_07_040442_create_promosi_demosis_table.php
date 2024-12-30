@@ -16,8 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_karyawan');
             $table->foreign('id_karyawan')->references('id')->on('users');
             $table->string('surat_rekomendasi');
-            $table->string('divisi_lama');
-            $table->string('divisi_baru');
+            // $table->string('divisi_lama')->nullable();
+            $table->unsignedBigInteger('divisi_lama_id');
+            $table->foreign('divisi_lama_id')->references('id')->on('jabatans');
+            // $table->string('divisi_baru');
+            $table->unsignedBigInteger('divisi_baru_id');
+            $table->foreign('divisi_baru_id')->references('id')->on('jabatans');
             $table->string('jenis');
             $table->string('status')->default('Pending');
             $table->timestamps();

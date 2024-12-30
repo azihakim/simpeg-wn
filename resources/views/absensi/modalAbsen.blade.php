@@ -234,6 +234,43 @@
 	// Run validation on page load in case fields are already filled
 	document.addEventListener('DOMContentLoaded', validateForm);
 
+	// function submitAbsensi() {
+	// 	const radioSelected = document.querySelector('input[name="optionsRadios"]:checked').value;
+	// 	const photo = photoData.value;
+	// 	const location = locationData.value;
+
+	// 	fetch('/absensi/store', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 				'X-CSRF-TOKEN': '{{ csrf_token() }}' // Ensure this token is included
+	// 			},
+	// 			body: JSON.stringify({
+	// 				absen: radioSelected,
+	// 				photo: photo,
+	// 				location: location
+	// 			})
+	// 		})
+	// 		.then(response => {
+	// 			if (response.ok) {
+	// 				alert('Absensi berhasil disimpan.');
+	// 				// // You can also reload the page or update the UI here
+	// 				bootstrap.Modal.getInstance(document.getElementById('exampleModal')).hide();
+	// 			} else {
+	// 				alert('Gagal menyimpan absensi. Silakan coba lagi.');
+	// 			}
+	// 		})
+	// 		.catch(error => {
+	// 			console.error('Error:', error);
+	// 			alert('Terjadi kesalahan saat mengirim data.');
+	// 		});
+	// }
+	// Function to reload the page
+	function reloadPage() {
+		location.reload();
+	}
+
+	// Call reloadPage after successful form submission
 	function submitAbsensi() {
 		const radioSelected = document.querySelector('input[name="optionsRadios"]:checked').value;
 		const photo = photoData.value;
@@ -254,8 +291,8 @@
 			.then(response => {
 				if (response.ok) {
 					alert('Absensi berhasil disimpan.');
-					// You can also reload the page or update the UI here
-					bootstrap.Modal.getInstance(document.getElementById('exampleModal')).hide();
+					// Reload the page after successful submission
+					reloadPage();
 				} else {
 					alert('Gagal menyimpan absensi. Silakan coba lagi.');
 				}

@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -32,14 +32,16 @@
 									<th>Pelamar</th>
 									<th>Jabatan</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($lamaran as $item)
 									<tr>
 										<td>{{ $item->user->nama }}</td>
-										<td>{{ $item->lowongan->jabatan }}</td>
+										<td>{{ $item->lowongan->divisi->nama_jabatan }}</td>
 										<td>
 											@if ($item->status == 'Diajukan')
 												<label class="badge badge-warning">{{ $item->status }}</label>
@@ -49,37 +51,40 @@
 												<label class="badge badge-success">{{ $item->status }}</label>
 											@endif
 										</td>
-										<td>
-											@if ($item->status == 'Diajukan' && Auth()->user()->jabatan == 'Pelamar')
-												<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
-											@endif
-											@if (Auth()->user()->jabatan == 'Admin')
-												<div class="dropdown">
-													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
-														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Respon</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
-														<h6 class="dropdown-header">Cek Lamaran</h6>
-														<a class="dropdown-item" href="{{ asset('storage/lamaran_files/' . $item->file) }}" target="_blank">Cek
-															Berkas</a>
-														<div class="dropdown-divider"></div>
+										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pelamar')
+											<td>
+												@if ($item->status == 'Diajukan' && Auth::user()->jabatan == 'Pelamar')
+													<a href="{{ route('lamaran.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
+												@endif
+												@if (Auth()->user()->jabatan == 'Admin')
+													<div class="dropdown">
+														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Respon</button>
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+															<h6 class="dropdown-header">Cek Lamaran</h6>
+															<a class="dropdown-item" href="{{ asset('storage/lamaran_files/' . $item->file) }}" target="_blank">Cek
+																Berkas</a>
+															<div class="dropdown-divider"></div>
 
-														<h6 class="dropdown-header">Ubah Status</h6>
-														<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Ditolak">
-															<button class="dropdown-item" type="submit">Tolak</button>
-														</form>
-														<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Diterima">
-															<button class="dropdown-item" type="submit">Terima</button>
-														</form>
+															<h6 class="dropdown-header">Ubah Status</h6>
+															<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Ditolak">
+																<button class="dropdown-item" type="submit">Tolak</button>
+															</form>
+															<form action="{{ route('lamaran.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Diterima">
+																<button class="dropdown-item" type="submit">Terima</button>
+															</form>
+														</div>
 													</div>
-												</div>
-											@endif
-										</td>
+												@endif
+											</td>
+										@endif
+
 									</tr>
 								@endforeach
 							</tbody>

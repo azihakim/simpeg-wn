@@ -12,7 +12,7 @@
 			</script>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -32,7 +32,7 @@
 									<select name="id_karyawan" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($allKaryawan as $item)
-											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}"
+											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi ? $item->divisi->nama_jabatan : '-' }}"
 												{{ $item->id == $karyawan->id ? 'selected' : '' }}>
 												{{ $item->nama }}
 											</option>
@@ -50,16 +50,26 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Divisi Lama</label>
-										<input type="text" class="form-control" name="divisi_lama" value="{{ $data->divisi_lama }}" readonly>
+										<input type="hidden" name="divisi_lama_id" value="{{ $data->divisiLama->id }}">
+										<input type="text" class="form-control" name="divisi_lama_display" disabled
+											value="{{ $data->divisiLama->nama_jabatan }}">
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Divisi Baru</label>
-										<input required type="text" class="form-control" name="divisi_baru" value="{{ $data->divisi_baru }}">
+										<select name="divisi_baru_id" class="form-select js-example-basic-single" id="divisiBaruSelect"
+											style="width:100%">
+											<option selected disabled>Pilih Divisi Baru</option>
+											@foreach ($divisi as $item)
+												<option value="{{ $item->id }}" {{ $item->id == $data->divisiBaru->id ? 'selected' : '' }}>
+													{{ $item->nama_jabatan }}
+												</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -85,4 +95,15 @@
 			</div>
 		</div>
 	</div>
+@endsection
+@section('js')
+	<script>
+		document.getElementById('id_karyawan').addEventListener('change', function() {
+			var selectedOption = this.options[this.selectedIndex];
+			var divisiLama = selectedOption.getAttribute('data-divisi_lama');
+			var divisiLamaId = selectedOption.value;
+			document.querySelector('input[name="divisi_lama_id"]').value = divisiLamaId;
+			document.querySelector('input[name="divisi_lama_display"]').value = divisiLama;
+		});
+	</script>
 @endsection

@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('lowongans', function (Blueprint $table) {
             $table->id();
-            $table->string('jabatan');
+            // $table->string('jabatan');
+            $table->unsignedBigInteger('jabatan');
+            $table->foreign('jabatan')->references('id')->on('jabatans');
             $table->string('status')->default('aktif');
             $table->text('deskripsi');
             $table->timestamps();

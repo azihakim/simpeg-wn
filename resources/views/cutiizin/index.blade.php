@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -25,10 +25,12 @@
 							<div>
 								<h4 class="card-title">List Cuti/Izin</h4>
 							</div>
-							<div>
-								<a href="{{ route('cutiizin.create') }}" class="btn btn-outline-primary btn-icon-text">
-									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Cuti/Izin</a>
-							</div>
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Karyawan')
+								<div>
+									<a href="{{ route('cutiizin.create') }}" class="btn btn-outline-primary btn-icon-text">
+										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Cuti/Izin</a>
+								</div>
+							@endif
 						</div>
 						<table id="example" class="display" style="width:100%">
 							<thead>
@@ -38,7 +40,9 @@
 									<th>Status</th>
 									<th>Jenis</th>
 									<th>Tanggal</th>
-									<th>Aksi</th>
+									@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -59,38 +63,44 @@
 										<td>{{ $item->jenis }}</td>
 										<td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d/m/Y') }} -
 											{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d/m/Y') }}</td>
-										<td>
-											<div class="dropdown">
-												<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
-													data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
-													<h6 class="dropdown-header">Data</h6>
-													<a href="{{ route('cutiizin.edit', $item->id) }}" class="dropdown-item">Edit</a>
-													<form action="{{ route('cutiizin.destroy', $item->id) }}" method="POST" class="d-inline">
-														@csrf
-														@method('delete')
-														<button type="submit" class="dropdown-item">Hapus</button>
-													</form>
-													<div class="dropdown-divider"></div>
+										@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+											<td>
+												<div class="dropdown">
+													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
+													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+														<h6 class="dropdown-header">Data</h6>
+														@if (Auth()->user()->jabatan == 'Admin')
+															<a href="{{ route('cutiizin.edit', $item->id) }}" class="dropdown-item">Edit</a>
+														@endif
+														@if (Auth()->user()->jabatan == 'Admin')
+															<form action="{{ route('cutiizin.destroy', $item->id) }}" method="POST" class="d-inline">
+																@csrf
+																@method('delete')
+																<button type="submit" class="dropdown-item">Hapus</button>
+															</form>
+														@endif
+														<div class="dropdown-divider"></div>
 
-													@if (Auth()->user()->jabatan == 'Admin')
-														<h6 class="dropdown-header">Ubah Status</h6>
-														<form action="{{ route('cutiizin.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Ditolak">
-															<button class="dropdown-item" type="submit">Tolak</button>
-														</form>
-														<form action="{{ route('cutiizin.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Diterima">
-															<button class="dropdown-item" type="submit">Terima</button>
-														</form>
-													@endif
+														@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+															<h6 class="dropdown-header">Ubah Status</h6>
+															<form action="{{ route('cutiizin.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Ditolak">
+																<button class="dropdown-item" type="submit">Tolak</button>
+															</form>
+															<form action="{{ route('cutiizin.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Diterima">
+																<button class="dropdown-item" type="submit">Terima</button>
+															</form>
+														@endif
+													</div>
 												</div>
-											</div>
-										</td>
+											</td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

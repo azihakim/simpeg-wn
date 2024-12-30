@@ -15,8 +15,8 @@
 									<label>Jabatan</label>
 									<select required name="jabatan" class="form-select js-example-basic-single" style="width:100%">
 										@foreach ($jabatan as $item)
-											<option value="{{ $item->jabatan }}" {{ $item->jabatan == $lowongan->jabatan ? 'selected' : '' }}>
-												{{ $item->jabatan }}</option>
+											<option value="{{ $item->id }}" {{ $item->id == $lowongan->divisi->id ? 'selected' : '' }}>
+												{{ $item->nama_jabatan }}</option>
 										@endforeach
 									</select>
 								</div>

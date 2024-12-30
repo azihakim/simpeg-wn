@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">List Karyawn</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
 									<a href="{{ route('karyawan.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
@@ -39,7 +39,7 @@
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
-									@if (Auth::user()->jabatan == 'Admin')
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -51,7 +51,7 @@
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
-										@if (Auth::user()->jabatan == 'Admin')
+										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 											<td>
 												<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 												{{-- <form action="{{ route('karyawan.destroy', $item->id) }}" method="POST" style="display:inline-block;">
@@ -61,7 +61,6 @@
 											</form> --}}
 											</td>
 										@endif
-
 									</tr>
 								@endforeach
 							</tbody>

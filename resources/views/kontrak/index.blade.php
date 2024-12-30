@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Pengajuan Resign Karyawan</h1>
+				<h1>Kontrak Karyawan</h1>
 				{{-- <p>Daftar Karyawan</p> --}}
 			</div>
 		</div>
@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -23,12 +23,12 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
 							<div>
-								<h4 class="card-title">Data Resign</h4>
+								<h4 class="card-title">Data Kontrak</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Karyawan')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
-									<a href="{{ route('resign.create') }}" class="btn btn-outline-primary btn-icon-text">
-										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Pengajuan Resign</a>
+									<a href="{{ route('kontrak.create') }}" class="btn btn-outline-primary btn-icon-text">
+										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Kontrak</a>
 								</div>
 							@endif
 						</div>
@@ -38,8 +38,10 @@
 									<th>#</th>
 									<th>Nama Karyawan</th>
 									<th>Status</th>
-									<th>Tanggal Pengajuan</th>
-									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+									<th>Surat</th>
+									<th>Keterangan</th>
+									<th>Tanggal Kontrak</th>
+									@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 										<th>Aksi</th>
 									@endif
 								</tr>
@@ -58,8 +60,14 @@
 												<span class="badge badge-danger">{{ $item->status }}</span>
 											@endif
 										</td>
-										<td>{{ $item->created_at->format('d F Y') }}</td>
-										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+										<td>
+											<a href="{{ Storage::url('surat_kontrak/' . $item->surat) }}" class="btn btn-outline-info" target="_blank">Cek
+												Surat</a>
+										</td>
+										<td>{{ $item->keterangan }}</td>
+										<td>{{ \Carbon\Carbon::parse($item->mulai_kontrak)->format('d F Y') }} -
+											{{ \Carbon\Carbon::parse($item->akhir_kontrak)->format('d F Y') }}</td>
+										@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
@@ -67,15 +75,15 @@
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
 														<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
+														@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
 															<h6 class="dropdown-header">Ubah Status</h6>
-															<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
+															<form action="{{ route('kontrak.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
 																@method('PUT')
 																<input type="hidden" name="status" value="Ditolak">
 																<button class="dropdown-item" type="submit">Tolak</button>
 															</form>
-															<form action="{{ route('resign.status', $item->id) }}" method="POST" style="display:inline;">
+															<form action="{{ route('kontrak.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
 																@method('PUT')
 																<input type="hidden" name="status" value="Diterima">
@@ -84,9 +92,9 @@
 														@endif
 													</div>
 												</div>
-												@if (Auth::user()->jabatan == 'Admin')
-													<a href="{{ route('resign.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
-													<form action="{{ route('resign.destroy', $item->id) }}" method="POST" class="d-inline">
+												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+													<a href="{{ route('kontrak.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
+													<form action="{{ route('kontrak.destroy', $item->id) }}" method="POST" class="d-inline">
 														@csrf
 														@method('delete')
 														<button class="btn btn-outline-danger"

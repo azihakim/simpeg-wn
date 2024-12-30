@@ -16,7 +16,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -26,17 +26,19 @@
 					<div class="card-body">
 						<div class="d-flex justify-content-between">
 							<div>
-								<h4 class="card-title">List Karyawn</h4>
+								<h4 class="card-title">List Absensi</h4>
 							</div>
 							{{-- <div>
 								<a href="" class="btn btn-outline-primary btn-icon-text">
 									<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Karyawan</a>
 							</div> --}}
 							<div>
-								<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-									Absen
-								</button>
-								@if (Auth::user()->jabatan == 'Admin')
+								@if (Auth::user()->jabatan == 'Karyawan' || Auth::user()->jabatan == 'Admin')
+									<button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+										Absen
+									</button>
+								@endif
+								@if (Auth::user()->jabatan == 'Man Keuangan' || Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur')
 									<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#rekapAbsensi">
 										Rekap Absen
 									</button>

@@ -11,7 +11,7 @@
 							@csrf
 							<div class="form-group col-md-4">
 								<label>Jabatan</label>
-								<input type="text" class="form-control" value="{{ $lowongan->jabatan }}" disabled>
+								<input type="text" class="form-control" value="{{ $lowongan->divisi->nama_jabatan }}" disabled>
 								<input type="hidden" name="id_lowongan" class="form-control" value="{{ $lowongan->id }}">
 							</div>
 							<div class="form-group">
@@ -21,9 +21,12 @@
 							<div class="form-group">
 								<label>Upload File</label>
 								<p class="card-description">Upload file yang dibutuhkan sesuai persyaratan</p>
-								{{-- <input required type="file" name="file" class="file-upload-default"> --}}
+								<input required type="file" name="file" class="file-upload-default">
 								<div class="input-group col-xs-12">
-									<input required name="file" type="file" class="form-control file-upload-info" placeholder="Upload File">
+									<input required type="text" class="form-control file-upload-info" disabled="" placeholder="Upload File">
+									<span class="input-group-append">
+										<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+									</span>
 								</div>
 							</div>
 							<div class="d-flex justify-content-end">

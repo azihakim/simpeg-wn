@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengunduran_diris', function (Blueprint $table) {
+        Schema::create('phks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_karyawan');
-            $table->foreign('id_karyawan')->references('id')->on('users');
-            $table->string('surat_pengunduran_diri');
-            $table->string('alasan');
-            $table->string('status');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('surat');
+            $table->string('keterangan')->nullable();
+            $table->string('status')->default('Menunggu');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengunduran_diris');
+        Schema::dropIfExists('phks');
     }
 };

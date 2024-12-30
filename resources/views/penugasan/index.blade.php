@@ -39,7 +39,9 @@
 									<th>Nama Karyawan</th>
 									<th>Status</th>
 									<th>Surat</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -52,8 +54,8 @@
 											<a href="{{ Storage::url('surat_penugasan/' . $item->surat) }}" class="btn btn-outline-info"
 												target="_blank">Cek Surat</a>
 										</td>
-										<td>
-											@if (Auth::user()->jabatan == 'Admin')
+										@if (Auth::user()->jabatan == 'Admin')
+											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
@@ -84,8 +86,8 @@
 													<button class="btn btn-outline-danger"
 														onclick="return confirm('Yakin Ingin Menghapus Data Ini?')">Hapus</button>
 												</form>
-											@endif
-										</td>
+											</td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

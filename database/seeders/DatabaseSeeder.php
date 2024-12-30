@@ -9,7 +9,6 @@ use App\Models\Lowongan;
 use App\Models\Rekrutmen;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,34 +24,87 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        $jabatan = [
+            [
+                'nama_jabatan' => 'Admin'
+            ],
+            [
+                'nama_jabatan' => 'Supervisor'
+            ],
+            [
+                'nama_jabatan' => 'Supir Dalam Kota'
+            ],
+            [
+                'nama_jabatan' => 'Supir Luar Kota'
+            ],
+            [
+                'nama_jabatan' => 'Checker'
+            ],
+            [
+                'nama_jabatan' => 'Gudang'
+            ],
+        ];
+        foreach ($jabatan as $j) {
+            Jabatan::create($j);
+        }
+
+        Lowongan::create(
+            [
+                'jabatan' => 1,
+                'status' => 'aktif',
+                'deskripsi' => 'Finance JobDesk',
+            ]
+        );
+
         User::create([
-            'nama' => 'Test Admin',
-            'jabatan' => 'Admin',
+            'nama' => 'Budi',
+            'jabatan' => 'Pelamar',
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
             'umur' => '20',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
-            'username' => 'admin',
+            'username' => 'budi',
             'password' => bcrypt('123'),
         ]);
+        Rekrutmen::create([
+            'id_pelamar' => 1,
+            'id_lowongan' => 1,
+            'status' => 'Diterima',
+            'file' => 'file.pdf',
+        ]);
+
         User::create([
-            'nama' => 'Manajer',
-            'jabatan' => 'Manajer',
+            'nama' => 'Super Admin',
+            'jabatan' => 'Super Admin',
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
             'umur' => '20',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
-            'username' => 'manajer',
+            'username' => 'sa',
             'password' => bcrypt('123'),
         ]);
         User::create([
-            'nama' => 'Test karyawn',
+            'nama' => 'Direktur',
+            'jabatan' => 'Direktur',
+            'divisi_id' => 1,
+            'status' => '',
+            'status_kerja' => '',
+            'nik' => '',
+            'umur' => '20',
+            'telepon' => '0812343710',
+            'alamat' => 'Jl. Sukamaju',
+            'username' => 'direktur',
+            'password' => bcrypt('123'),
+        ]);
+
+        User::create([
+            'nama' => 'Karyawan 1',
             'jabatan' => 'Karyawan',
-            'divisi' => 'IT',
+            'divisi_id' => 2,
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
@@ -63,96 +115,17 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123'),
         ]);
         User::create([
-            'nama' => 'Test karyawan 2',
+            'nama' => 'Karyawan 2',
             'jabatan' => 'Karyawan',
-            'divisi' => 'Office',
+            'divisi_id' => 1,
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
             'umur' => '20',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
-            'username' => 'karyawan2',
+            'username' => 'karyawan 2',
             'password' => bcrypt('123'),
         ]);
-
-        Lowongan::create(
-            [
-                'jabatan' => 'Checker',
-                'status' => 'aktif',
-                'deskripsi' => 'Membuat aplikasi berbasis web'
-            ]
-        );
-
-        // Rekrutmen::create([
-        //     'id_pelamar' => 1,
-        //     'id_lowongan' => 1,
-        //     'status' => 'Diterima',
-        //     'file' => 'file.pdf',
-        // ]);
-
-        $jabatan = [
-            [
-                'jabatan' => 'Admin'
-            ],
-            [
-                'jabatan' => 'Supervisor'
-            ],
-            [
-                'jabatan' => 'Supir (Luar Kota/Dalam Kota)'
-            ],
-            [
-                'jabatan' => 'Checker'
-            ],
-            [
-                'jabatan' => 'Gudang'
-            ],
-        ];
-        foreach ($jabatan as $j) {
-            Jabatan::create($j);
-        }
-
-        // Pastikan ada data di tabel users sebelum menjalankan seeder ini
-        $users = User::where('jabatan', 'Karyawan')->get();
-
-        if ($users->isEmpty()) {
-            $this->command->warn('Tidak ada data karyawan di tabel users. Harap jalankan UserSeeder terlebih dahulu.');
-            return;
-        }
-
-        $absensiData = [];
-        $faker = \Faker\Factory::create();
-
-        foreach ($users as $user) {
-            // Simulasi absensi masuk dan pulang untuk beberapa hari
-            for ($j = 0; $j < 30; $j++) { // 30 hari absensi
-                $date = now()->subDays(30 - $j);
-
-                // Absensi masuk
-                $absensiData[] = [
-                    'id_karyawan' => $user->id,
-                    'lokasi' => 'https://www.google.com/maps?q=' . $faker->latitude . ',' . $faker->longitude,
-                    'keterangan' => 'masuk',
-                    'foto' => '$faker', // Simpan gambar palsu
-                    'created_at' => $date->setHour(8)->format('Y-m-d H:i:s'),
-                    'updated_at' => $date->setHour(8)->format('Y-m-d H:i:s'),
-                ];
-
-                // Absensi pulang
-                $absensiData[] = [
-                    'id_karyawan' => $user->id,
-                    'lokasi' => 'https://www.google.com/maps?q=' . $faker->latitude . ',' . $faker->longitude,
-                    'keterangan' => 'pulang',
-                    'foto' => '$faker', // Simpan gambar palsu
-                    'created_at' => $date->setHour(17)->format('Y-m-d H:i:s'),
-                    'updated_at' => $date->setHour(17)->format('Y-m-d H:i:s'),
-                ];
-            }
-        }
-
-        // Masukkan data ke database
-        DB::table('absensis')->insert($absensiData);
-
-        $this->command->info('Seeder Absensi berhasil dijalankan!');
     }
 }

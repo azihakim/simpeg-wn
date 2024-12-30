@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Reward Punishment</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
 									<a href="{{ route('rewardpunishment.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Reward/Punishment Karyawan</a>
@@ -42,7 +42,9 @@
 									<th>Reward</th>
 									<th>Surat Punishment</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -61,37 +63,41 @@
 											@endif
 										</td>
 										<td>{{ $item->status }}</td>
-										<td>
-											<a href="{{ route('rewardpunishment.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-											<form action="{{ route('rewardpunishment.destroy', $item->id) }}" method="POST"
-												style="display: inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-											</form>
+										@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan' || Auth::user()->jabatan == 'Direktur')
+											<td>
+												@if (Auth()->user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
+													<a href="{{ route('rewardpunishment.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+													<form action="{{ route('rewardpunishment.destroy', $item->id) }}" method="POST"
+														style="display: inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
+														@csrf
+														@method('DELETE')
+														<button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+													</form>
+												@endif
 
-											@if (Auth()->user()->jabatan == 'Manajer')
-												<div class="dropdown">
-													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
-														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
-														<h6 class="dropdown-header">Ubah Status</h6>
-														<form action="{{ route('rewardpunishment.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Ditolak">
-															<button class="dropdown-item" type="submit">Tolak</button>
-														</form>
-														<form action="{{ route('rewardpunishment.status', $item->id) }}" method="POST" style="display:inline;">
-															@csrf
-															@method('PUT')
-															<input type="hidden" name="status" value="Diterima">
-															<button class="dropdown-item" type="submit">Terima</button>
-														</form>
+												@if (Auth()->user()->jabatan == 'Admin' || Auth()->user()->jabatan == 'Direktur')
+													<div class="dropdown">
+														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+															<h6 class="dropdown-header">Ubah Status</h6>
+															<form action="{{ route('rewardpunishment.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Ditolak">
+																<button class="dropdown-item" type="submit">Tolak</button>
+															</form>
+															<form action="{{ route('rewardpunishment.status', $item->id) }}" method="POST" style="display:inline;">
+																@csrf
+																@method('PUT')
+																<input type="hidden" name="status" value="Diterima">
+																<button class="dropdown-item" type="submit">Terima</button>
+															</form>
+														</div>
 													</div>
-												</div>
-											@endif
-										</td>
+												@endif
+											</td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

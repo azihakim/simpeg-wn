@@ -36,7 +36,10 @@
 									<select name="id_karyawan" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
-											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">{{ $item->nama }}</option>
+											<option value="{{ $item->id }}"
+												data-divisi_lama="{{ $item->divisi ? $item->divisi->nama_jabatan : '-' }}">
+												{{ $item->nama }}
+											</option>
 										@endforeach
 									</select>
 								</div>
@@ -52,18 +55,29 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-2">
+								<div class="col-md-3">
 									<div class="form-group">
 										<label>Divisi Lama</label>
-										<input type="hidden" name="divisi_lama">
+										<input type="hidden" name="divisi_lama_id">
 										<input type="text" class="form-control" name="divisi_lama_display" disabled>
 									</div>
 								</div>
-								<div class="col-md-2">
+								{{-- <div class="col-md-2">
 									<div class="form-group">
 										<label>Divisi Baru</label>
 										<input required type="text" class="form-control" name="divisi_baru">
 									</div>
+								</div> --}}
+								<div class="col-md-3">
+									<label>Divisi Baru</label>
+									<select name="divisi_baru_id" class="form-select js-example-basic-single" id="pelamarSelect" style="width:100%">
+										<option selected disabled>Pilih Calon Karyawan</option>
+										@foreach ($divisi as $item)
+											<option value="{{ $item->id }}">
+												{{ $item->nama_jabatan }}
+											</option>
+										@endforeach
+									</select>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
@@ -92,7 +106,8 @@
 		document.getElementById('id_karyawan').addEventListener('change', function() {
 			var selectedOption = this.options[this.selectedIndex];
 			var divisiLama = selectedOption.getAttribute('data-divisi_lama');
-			document.querySelector('input[name="divisi_lama"]').value = divisiLama;
+			var divisiLamaId = selectedOption.value;
+			document.querySelector('input[name="divisi_lama_id"]').value = divisiLamaId;
 			document.querySelector('input[name="divisi_lama_display"]').value = divisiLama;
 		});
 	</script>

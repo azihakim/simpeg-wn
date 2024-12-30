@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">Promosi Demosi</h4>
 							</div>
-							@if (Auth::user()->jabatan == 'Admin')
+							@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 								<div>
 									<a href="{{ route('promosidemosi.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Promosi/Demosi Karyawan</a>
@@ -41,7 +41,9 @@
 									<th>Jabatan Baru</th>
 									<th>Tanggal</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Pengadaan')
+										<th>Aksi</th>
+									@endif
 								</tr>
 							</thead>
 							<tbody>
@@ -49,12 +51,12 @@
 									<tr>
 										<td>{{ $item->karyawan->nama }}</td>
 										<td>{{ $item->jenis }}</td>
-										<td>{{ $item->divisi_lama }}</td>
-										<td>{{ $item->divisi_baru }}</td>
+										<td>{{ $item->divisiLama->nama_jabatan }}</td>
+										<td>{{ $item->divisiBaru->nama_jabatan }}</td>
 										<td>{{ $item->created_at->format('d/m/Y') }}</td>
 										<td>{{ $item->status }}</td>
 										<td>
-											@if (Auth::user()->jabatan == 'Admin')
+											@if (Auth::user()->jabatan == 'Admin' || Auth::user()->jabatan == 'Pengadaan')
 												<a href="{{ route('promosidemosi.edit', $item->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
 												<form action="{{ route('promosidemosi.destroy', $item->id) }}" method="POST" class="d-inline">
 													@csrf
@@ -63,7 +65,7 @@
 														onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
 												</form>
 											@endif
-											@if (Auth()->user()->jabatan == 'Manajer')
+											@if (Auth()->user()->jabatan == 'Direktur' || Auth::user()->jabatan == 'Admin')
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Ubah Status</button>

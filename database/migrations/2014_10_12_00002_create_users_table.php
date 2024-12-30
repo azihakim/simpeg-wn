@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jabatan')->nullable();
-            $table->string('divisi')->nullable();
+            $table->unsignedBigInteger('divisi_id')->nullable();
+            $table->foreign('divisi_id')->references('id')->on('jabatans');
             $table->string('status')->nullable();
             $table->string('status_kerja')->nullable();
             $table->string('nik')->nullable();

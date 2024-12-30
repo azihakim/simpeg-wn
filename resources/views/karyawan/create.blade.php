@@ -31,7 +31,7 @@
 							@csrf
 							<div class="form-group col-md-4">
 								<label>Calon Karyawan</label>
-								<select name="pelamar" class="form-control" id="pelamarSelect" style="width:100%">
+								<select name="pelamar" class="form-select js-example-basic-single" id="pelamarSelect" style="width:100%">
 									<option value="">Pilih Calon Karyawan</option>
 									@foreach ($pelamar as $item)
 										<option value="{{ $item->user->id }}" data-nama="{{ $item->user->nama }}" data-umur="{{ $item->user->umur }}"
@@ -107,7 +107,7 @@
 	<script>
 		$(document).ready(function() {
 			// Initialize select2
-			// $('#pelamarSelect').select2();
+			$('#pelamarSelect').select2();
 
 			// Bind change event using jQuery
 			$('#pelamarSelect').on('change', function() {

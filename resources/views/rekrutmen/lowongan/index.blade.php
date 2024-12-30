@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -25,7 +25,7 @@
 							<div>
 								<h4 class="card-title">List Lowongan</h4>
 							</div>
-							@if (Auth()->user()->jabatan != 'Pelamar')
+							@if (Auth::user()->jabatan == 'Pengadaan' || Auth::user()->jabatan == 'Admin')
 								<div>
 									<a href="{{ route('lowongan.create') }}" class="btn btn-outline-primary btn-icon-text">
 										<i class="fa fa-plus-square btn-icon-prepend"></i> Tambah Lowongan</a>
@@ -43,7 +43,7 @@
 							<tbody>
 								@foreach ($lowongan as $item)
 									<tr>
-										<td>{{ $item->jabatan }}</td>
+										<td>{{ $item->divisi->nama_jabatan }}</td>
 										<td style="text-align: center">
 											@if ($item->status == 'Aktif')
 												<label class="badge badge-primary">{{ $item->status }}</label>
@@ -55,7 +55,7 @@
 											<td style="text-align: center">
 												<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-outline-info btn-block">Daftar</a>
 											</td>
-										@else
+										@elseif (Auth::user()->jabatan == 'Admin')
 											<td style="text-align: center">
 												<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 												<form action="{{ route('lowongan.destroy', $item->id) }}" method="post" style="display: inline">
@@ -64,6 +64,8 @@
 													<button type="submit" class="btn btn-danger">Hapus</button>
 												</form>
 											</td>
+										@else
+											<td></td>
 										@endif
 
 									</tr>

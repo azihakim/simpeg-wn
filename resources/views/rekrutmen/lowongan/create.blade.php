@@ -12,7 +12,7 @@
 			</script>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -28,7 +28,7 @@
 								<label>Jabatan</label>
 								<select name="jabatan" class="form-select js-example-basic-single" style="width:100%">
 									@foreach ($jabatan as $item)
-										<option value="{{ $item->jabatan }}">{{ $item->jabatan }}</option>
+										<option value="{{ $item->id }}">{{ $item->nama_jabatan }}</option>
 									@endforeach
 								</select>
 							</div>
