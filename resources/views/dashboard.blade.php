@@ -1,4 +1,6 @@
 @extends('master')
+@section('css')
+@endsection
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -12,8 +14,8 @@
 
 					<div style="text-align: center">
 						<div class="col-sm-12">
-							<img src="{{ asset('assets/images/logo.jpg') }}" alt="">
-							<h1>PT INDO GLOBAL CEMERLANG</h1>
+							<h1 style="margin-top: 20px">PT INDO GLOBAL CEMERLANG</h1>
+							<img src="{{ asset('assets/images/PT IGLC.jpeg') }}" style="widows: 400px;">
 						</div>
 					</div>
 					<div class="row justify-content-center" style="text-align: center">
