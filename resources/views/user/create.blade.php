@@ -54,6 +54,7 @@
 										<option disabled selected>Pilih Role</option>
 										<option value="Admin">Admin</option>
 										<option value="Manajer">Manajer</option>
+										<option value="Karyawan">Karyawan</option>
 									</select>
 								</div>
 							</div>
