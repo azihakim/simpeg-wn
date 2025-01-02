@@ -55,10 +55,8 @@
 									<label>Role</label>
 									<select required name="jabatan" class="form-control">
 										<option disabled>Pilih Role</option>
-										@foreach ($jabatan as $item)
-											<option value="{{ $item->nama_jabatan }}" {{ $data->jabatan == $item->nama_jabatan ? 'selected' : '' }}>
-												{{ $item->nama_jabatan }}</option>
-										@endforeach
+										<option value="Admin">Admin</option>
+										<option value="Manajer">Manajer</option>
 									</select>
 								</div>
 							</div>

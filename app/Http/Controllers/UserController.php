@@ -26,7 +26,8 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required',
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'jabatan' => 'required',
         ]);
 
         try {

@@ -36,13 +36,11 @@
 								<div class="card-body">
 									<div class="card-title"> MISI </div>
 									<div class="d-flex justify-content-center">
-										<ol>
-											<li>Menyediakan sparepart motor dengan harga terjangkau dan kualitas yang terbaik.</li>
-											<li>Memberikan layanan pelanggan yang cepat, ramah, dan responsif untuk memastikan kepuasan pelanggan.</li>
-											<li>Membangun kemitraan yang kuat dengan pemasok, distributor dan memastikan distribusi produk yang efisien
-												dan luas.</li>
-											<li>Menerapkan praktik bisnis yang ramah lingkungan dan kesejahteraan masyarakat.</li>
-										</ol>
+										<p>Menyediakan sparepart motor dengan harga terjangkau dan kualitas yang terbaik.</p>
+										<p>Memberikan layanan pelanggan yang cepat, ramah, dan responsif untuk memastikan kepuasan pelanggan.</p>
+										<p>Membangun kemitraan yang kuat dengan pemasok, distributor dan memastikan distribusi produk yang efisien
+											dan luas.</p>
+										<p>Menerapkan praktik bisnis yang ramah lingkungan dan kesejahteraan masyarakat.</p>
 									</div>
 								</div>
 							</div>

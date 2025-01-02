@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/js/select.dataTables.min.css') }}">
 	<!-- End plugin css for this page -->
 	<!-- inject:css -->
-	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> --}}
 	<!-- endinject -->
 	<link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 	<link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
@@ -278,7 +278,19 @@
 	<script src="{{ asset('assets/js/select2.js') }}"></script>
 	<!-- End custom js for this page-->
 	@yield('js')
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const textarea = document.getElementById('exampleTextarea1');
 
+			textarea.addEventListener('input', function() {
+				// Reset tinggi untuk menghindari masalah penumpukan tinggi
+				textarea.style.height = 'auto';
+
+				// Setel tinggi baru berdasarkan scrollHeight
+				textarea.style.height = textarea.scrollHeight + 'px';
+			});
+		});
+	</script>
 	<script>
 		new DataTable('#example');
 	</script>

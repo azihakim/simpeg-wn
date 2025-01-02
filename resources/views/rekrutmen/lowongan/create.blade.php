@@ -34,7 +34,7 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleTextarea1">Deskripsi</label>
-								<textarea name="deskripsi" class="form-control" id="exampleTextarea1" rows="4"></textarea>
+								<textarea name="deskripsi" class="form-control" id="exampleTextarea1" rows="1" style="overflow: show;"></textarea>
 							</div>
 							<div class="d-flex justify-content-end">
 								<button type="submit" class="btn btn-outline-primary">Simpan</button>

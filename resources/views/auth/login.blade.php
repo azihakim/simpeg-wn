@@ -28,9 +28,13 @@
 			<div class="content-wrapper d-flex align-items-center auth">
 				<div class="row flex-grow">
 					<div class="col-lg-4 mx-auto">
-						@if (session('success'))
-							<div class="alert alert-success">
-								{{ session('success') }}
+						@if ($errors->any())
+							<div class="alert alert-danger">
+								<ul>
+									@foreach ($errors->all() as $error)
+										<li>{{ $error }}</li>
+									@endforeach
+								</ul>
 							</div>
 						@endif
 						<div class="auth-form-light text-left p-5">
