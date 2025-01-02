@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\PromosiDemosi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,11 @@ class PromosiDemosiController extends Controller
      */
     public function create()
     {
-        $karyawan = User::where('jabatan', 'Karyawan')->get();
-        return view('promosidemosi.create', compact('karyawan'));
+        $karyawan = User::with('divisi')->where('jabatan', 'Karyawan')->get();
+
+
+        $divisi = Jabatan::all();
+        return view('promosidemosi.create', compact('karyawan', 'divisi'));
     }
 
     /**
@@ -41,8 +45,8 @@ class PromosiDemosiController extends Controller
             $validatedData = $request->validate([
                 'id_karyawan' => 'required|integer',
                 'jenis' => 'required|string|max:255',
-                'divisi_lama' => 'required|string|max:255',
-                'divisi_baru' => 'required|string|max:255',
+                'divisi_lama_id' => 'required|max:255',
+                'divisi_baru_id' => 'required|max:255',
                 'surat_rekomendasi' => 'required|file|mimes:pdf,doc,docx|max:2048',
             ]);
 
@@ -77,9 +81,10 @@ class PromosiDemosiController extends Controller
     public function edit($id)
     {
         $data = PromosiDemosi::find($id);
-        $karyawan = User::where('jabatan', 'Karyawan')->first();
+        $karyawan = User::with('divisi')->where('jabatan', 'Karyawan')->first();
         $allKaryawan = User::where('jabatan', 'Karyawan')->get();
-        return view('promosidemosi.edit', compact('data', 'karyawan', 'allKaryawan'));
+        $divisi = Jabatan::all();
+        return view('promosidemosi.edit', compact('data', 'karyawan', 'allKaryawan', 'divisi'));
     }
 
     public function update($id, Request $request)
@@ -91,8 +96,8 @@ class PromosiDemosiController extends Controller
             $validatedData = $request->validate([
                 'id_karyawan' => 'required|integer',
                 'jenis' => 'required|string|max:255',
-                'divisi_lama' => 'required|string|max:255',
-                'divisi_baru' => 'required|string|max:255',
+                'divisi_lama_id' => 'required',
+                'divisi_baru_id' => 'required',
                 'surat_rekomendasi' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             ]);
 

@@ -71,7 +71,7 @@
 								<div class="col-md-3">
 									<label>Divisi Baru</label>
 									<select name="divisi_baru_id" class="form-select js-example-basic-single" id="pelamarSelect" style="width:100%">
-										<option selected disabled>Pilih Calon Karyawan</option>
+										<option selected disabled>Pilih</option>
 										@foreach ($divisi as $item)
 											<option value="{{ $item->id }}">
 												{{ $item->nama_jabatan }}
