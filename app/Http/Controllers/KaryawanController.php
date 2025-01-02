@@ -58,7 +58,7 @@ class KaryawanController extends Controller
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
             $karyawan->status_kerja = $request->status_kerja;
-            $karyawan->divisi = $pelamar->lowongan->jabatan;
+            $karyawan->divisi_id = $pelamar->lowongan->jabatan;
             $karyawan->status = 'Aktif';
             $karyawan->nik = $request->nik;
             $karyawan->jabatan = 'Karyawan';

@@ -15,11 +15,11 @@
 			<div class="alert alert-danger" id="error-alert">
 				{{ session('error') }}
 			</div>
-			<script>
+			{{-- <script>
 				setTimeout(function() {
 					document.getElementById('error-alert').style.display = 'none';
 				}, 3000);
-			</script>
+			</script> --}}
 		@endif
 		<div class="row">
 			<div class="col-md-12 grid-margin stretch-card">

@@ -19,6 +19,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Jabatan::class, 'divisi_id', 'id');
     }
+    function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
