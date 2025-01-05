@@ -40,6 +40,7 @@
 									<th>Status</th>
 									<th>Jenis</th>
 									<th>Tanggal</th>
+									<th>Keterangan</th>
 									@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 										<th>Aksi</th>
 									@endif
@@ -62,13 +63,21 @@
 										</td>
 										<td>{{ $item->jenis }}</td>
 										<td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d/m/Y') }} -
-											{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d/m/Y') }}</td>
+											{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d/m/Y') }}
+										</td>
+										<td>{{ $item->keterangan }}</td>
 										@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
 											<td>
 												<div class="dropdown">
 													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
 														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+														{{-- <h6 class="dropdown-header">Cek Surat</h6>
+														<a class="dropdown-item" href="{{ Storage::url($item->surat_) }}" target="_blank">Cek
+															Surat</a>
+
+														<div class="dropdown-divider"></div> --}}
+
 														<h6 class="dropdown-header">Data</h6>
 														@if (Auth()->user()->jabatan == 'Super Admin')
 															<a href="{{ route('cutiizin.edit', $item->id) }}" class="dropdown-item">Edit</a>

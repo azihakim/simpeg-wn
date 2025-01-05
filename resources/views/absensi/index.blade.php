@@ -38,7 +38,10 @@
 										Absen
 									</button>
 								@endif
-								@if (Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer')
+								@if (Auth::user()->jabatan == 'Manajer' ||
+										Auth::user()->jabatan == 'Super Admin' ||
+										Auth::user()->jabatan == 'Manajer' ||
+										Auth::user()->jabatan == 'Admin')
 									<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#rekapAbsensi">
 										Rekap Absen
 									</button>

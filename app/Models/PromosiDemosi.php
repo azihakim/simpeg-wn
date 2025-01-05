@@ -11,8 +11,8 @@ class PromosiDemosi extends Model
     protected $fillable = [
         'id_karyawan',
         'surat_rekomendasi',
-        'divisi_lama',
-        'divisi_baru',
+        'divisi_lama_id',
+        'divisi_baru_id',
         'status',
         'jenis'
     ];
@@ -20,5 +20,15 @@ class PromosiDemosi extends Model
     function karyawan()
     {
         return $this->belongsTo(User::class, 'id_karyawan');
+    } // Relasi untuk divisi lama
+    public function divisiLama()
+    {
+        return $this->belongsTo(Jabatan::class, 'divisi_lama_id');
+    }
+
+    // Relasi untuk divisi baru
+    public function divisiBaru()
+    {
+        return $this->belongsTo(Jabatan::class, 'divisi_baru_id');
     }
 }

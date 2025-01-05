@@ -142,7 +142,8 @@
 									@if (Auth::user()->jabatan == 'Super Admin' ||
 											Auth::user()->jabatan == 'Manajer' ||
 											Auth::user()->jabatan == 'Manajer' ||
-											Auth::user()->jabatan == 'Karyawan')
+											Auth::user()->jabatan == 'Karyawan' ||
+											Auth::user()->jabatan == 'Admin')
 										<li class="nav-item"> <a class="nav-link" href="{{ route('absensi.index') }}">Absensi</a></li>
 									@endif
 									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Karyawan')
@@ -198,7 +199,10 @@
 							</a>
 						</li>
 					@endif
-					@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Karyawan')
+					@if (Auth::user()->jabatan == 'Super Admin' ||
+							Auth::user()->jabatan == 'Manajer' ||
+							Auth::user()->jabatan == 'Karyawan' ||
+							Auth::user()->jabatan == 'Admin')
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('penugasan.index') }}">
 								<i class="fa fa-vcard menu-icon"></i>

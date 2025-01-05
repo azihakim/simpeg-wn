@@ -55,7 +55,7 @@
 											<td style="text-align: center">
 												<a href="{{ route('lamaran.regist', $item->id) }}" class="btn btn-outline-info btn-block">Daftar</a>
 											</td>
-										@elseif (Auth::user()->jabatan == 'Super Admin')
+										@elseif (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 											<td style="text-align: center">
 												<a href="{{ route('lowongan.edit', $item->id) }}" class="btn btn-warning btn-block">Edit</a>
 												<form action="{{ route('lowongan.destroy', $item->id) }}" method="post" style="display: inline">
