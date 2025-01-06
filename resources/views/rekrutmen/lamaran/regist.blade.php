@@ -16,7 +16,8 @@
 							</div>
 							<div class="form-group">
 								<label for="exampleTextarea1">Deskripsi</label>
-								<textarea disabled name="deskripsi" class="form-control" id="exampleTextarea1" rows="4">{{ $lowongan->deskripsi }}</textarea>
+								<textarea disabled name="deskripsi" class="form-control" id="exampleTextarea1" rows="1"
+								 style="overflow: hidden; resize: none;">{{ $lowongan->deskripsi }}</textarea>
 							</div>
 							<div class="form-group">
 								<label>Upload File</label>
@@ -43,4 +44,20 @@
 @endsection
 
 @section('js')
+	<script>
+		// Function to automatically adjust the height of the textarea based on content
+		function adjustTextareaHeight() {
+			const textarea = document.getElementById('exampleTextarea1');
+			textarea.style.height = 'auto'; // Reset height before recalculating
+			textarea.style.height = (textarea.scrollHeight) + 'px'; // Set the height based on scrollHeight
+		}
+
+		// Call the function on page load to adjust the height initially
+		window.onload = function() {
+			adjustTextareaHeight();
+		};
+
+		// Optional: Add an event listener for input in case the content is dynamically updated
+		document.getElementById('exampleTextarea1').addEventListener('input', adjustTextareaHeight);
+	</script>
 @endsection

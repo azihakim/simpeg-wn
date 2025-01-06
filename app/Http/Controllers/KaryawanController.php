@@ -120,7 +120,8 @@ class KaryawanController extends Controller
 
             return redirect()->route('karyawan.index')->with('success', 'Data karyawan berhasil dihapus.');
         } catch (\Exception $e) {
-            return redirect()->route('karyawan.index')->with('error', 'Gagal menghapus data karyawan: ' . $e->getMessage());
+            // return redirect()->route('karyawan.index')->with('error', 'Gagal menghapus data karyawan: ' . $e->getMessage());
+            return redirect()->route('karyawan.index')->with('error', 'Gagal menghapus data karyawan karena data masih terhubung dengan data lain.');
         }
     }
 }
