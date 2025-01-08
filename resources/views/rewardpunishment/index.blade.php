@@ -71,7 +71,8 @@
 														style="display: inline-block;" onsubmit="return confirm('Yakin ingin menghapus data ini?');">
 														@csrf
 														@method('DELETE')
-														<button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+														<button type="submit" class="btn btn-danger"
+															onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">Hapus</button>
 													</form>
 												@endif
 

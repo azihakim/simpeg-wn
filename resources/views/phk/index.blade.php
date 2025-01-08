@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -68,13 +68,13 @@
 										<td>{{ $item->keterangan }}</td>
 										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Manajer' || Auth::user()->jabatan == 'Admin')
 											<td>
-												<div class="dropdown">
-													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
-														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
-														<div class="dropdown-divider"></div>
+												@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
+													<div class="dropdown">
+														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+															<div class="dropdown-divider"></div>
 
-														@if (Auth()->user()->jabatan == 'Super Admin' || Auth()->user()->jabatan == 'Manajer')
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('phk.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
@@ -88,9 +88,9 @@
 																<input type="hidden" name="status" value="Diterima">
 																<button class="dropdown-item" type="submit">Terima</button>
 															</form>
-														@endif
+														</div>
 													</div>
-												</div>
+												@endif
 												@if (Auth()->user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 													<a href="{{ route('phk.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 													<form action="{{ route('phk.destroy', $item->id) }}" method="POST" class="d-inline">

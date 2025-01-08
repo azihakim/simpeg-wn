@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -57,12 +57,11 @@
 										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 											<td>
 												<div class="dropdown">
-													<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
-														data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
-														<div class="dropdown-divider"></div>
-
-														@if (Auth()->user()->jabatan == 'Super Admin')
+													@if (Auth()->user()->jabatan == 'Super Admin')
+														<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1"
+															data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi</button>
+														<div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1" style="">
+															<div class="dropdown-divider"></div>
 															<h6 class="dropdown-header">Ubah Status</h6>
 															<form action="{{ route('penugasan.status', $item->id) }}" method="POST" style="display:inline;">
 																@csrf
@@ -76,8 +75,8 @@
 																<input type="hidden" name="status" value="Non Aktif">
 																<button class="dropdown-item" type="submit">Non Aktif</button>
 															</form>
-														@endif
-													</div>
+														</div>
+													@endif
 												</div>
 												<a href="{{ route('penugasan.edit', $item->id) }}" class="btn btn-outline-warning">Edit</a>
 												<form action="{{ route('penugasan.destroy', $item->id) }}" method="POST" class="d-inline">

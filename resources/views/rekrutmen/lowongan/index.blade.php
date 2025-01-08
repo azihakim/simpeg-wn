@@ -61,7 +61,8 @@
 												<form action="{{ route('lowongan.destroy', $item->id) }}" method="post" style="display: inline">
 													@csrf
 													@method('DELETE')
-													<button type="submit" class="btn btn-danger">Hapus</button>
+													<button type="submit" class="btn btn-danger"
+														onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">Hapus</button>
 												</form>
 											</td>
 										@else

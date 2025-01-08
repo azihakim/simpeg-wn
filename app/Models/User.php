@@ -23,6 +23,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
     }
+    public function punishments()
+    {
+        return $this->hasMany(RewardPunishment::class, 'id_karyawan');
+    }
     /**
      * The attributes that are mass assignable.
      *

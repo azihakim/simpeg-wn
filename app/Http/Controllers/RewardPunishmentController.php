@@ -23,7 +23,13 @@ class RewardPunishmentController extends Controller
      */
     public function create()
     {
-        $karyawan = User::where('jabatan', 'Karyawan')->get();
+        $karyawan = User::with('punishments')
+            ->where('jabatan', 'Karyawan')
+            ->get()
+            ->map(function ($user) {
+                $user->has_punishment = $user->punishments->isNotEmpty();
+                return $user;
+            });
         return view('rewardpunishment.create', compact('karyawan'));
     }
 

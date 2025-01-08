@@ -13,7 +13,7 @@
 			</div>
 		@endif
 		@if (session('error'))
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				{{ session('error') }}
 			</div>
 		@endif
@@ -52,7 +52,8 @@
 											<form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline">
 												@csrf
 												@method('DELETE')
-												<button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin?')">Hapus</button>
+												<button type="submit" class="btn btn-danger"
+													onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">Hapus</button>
 											</form>
 										</td>
 									</tr>

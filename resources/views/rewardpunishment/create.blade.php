@@ -15,11 +15,6 @@
 			<div class="alert alert-danger" id="error-alert">
 				{{ session('error') }}
 			</div>
-			<script>
-				setTimeout(function() {
-					document.getElementById('error-alert').style.display = 'none';
-				}, 3000);
-			</script>
 		@endif
 		<div class="row">
 			<div class="col-md-12 grid-margin stretch-card">
@@ -31,12 +26,19 @@
 							enctype="multipart/form-data">
 							@csrf
 							<div class="row">
-								<div class="form-group col-md-2">
+								<div class="form-group col-md-4">
 									<label>Karyawan</label>
 									<select required name="id_karyawan" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
-											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">{{ $item->nama }}</option>
+											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">
+												{{ $item->nama }}
+												@if ($item->has_punishment == 1)
+													<p style="color: red; font-weight: bold;">(Sudah SP1)</p>
+												@else
+													{{ $item->has_punishment ?? '' }}
+												@endif
+											</option>
 										@endforeach
 									</select>
 								</div>
