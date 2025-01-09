@@ -25,7 +25,7 @@ class User extends Authenticatable
     }
     public function punishments()
     {
-        return $this->hasMany(RewardPunishment::class, 'id_karyawan');
+        return $this->hasMany(RewardPunishment::class, 'id_karyawan')->where('jenis', 'Punishment');
     }
     /**
      * The attributes that are mass assignable.
@@ -46,7 +46,7 @@ class User extends Authenticatable
         'alamat',
         'username',
         'password',
-        'divisi',
+        'divisi_id',
     ];
 
     /**

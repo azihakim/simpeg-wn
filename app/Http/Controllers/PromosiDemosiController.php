@@ -149,7 +149,7 @@ class PromosiDemosiController extends Controller
             $promosiDemosi->status = $request->status;
             if ($request->status == 'Diterima') {
                 $promosiDemosi->karyawan->update([
-                    'divisi' => $promosiDemosi->divisi_baru
+                    'divisi_id' => $promosiDemosi->divisi_baru_id
                 ]);
             }
             $promosiDemosi->save();
