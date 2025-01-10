@@ -30,9 +30,10 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(
-                'Username dan Password Salah atau Belum Terdaftar.'
-            );
+            return redirect()->back()->withErrors([
+                // 'error' => 'Username dan Password Salah atau Belum Terdaftar.',
+                'error' => $e->getMessage()
+            ]);
         }
     }
 
