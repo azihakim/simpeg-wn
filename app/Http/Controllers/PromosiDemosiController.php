@@ -47,7 +47,7 @@ class PromosiDemosiController extends Controller
                 'jenis' => 'required|string|max:255',
                 'divisi_lama_id' => 'required|integer',
                 'divisi_baru_id' => 'required|integer',
-                'surat_rekomendasi' => 'required|file|mimes:pdf,doc,docx|max:2048',
+                'surat_rekomendasi' => 'required',
             ]);
             // Proses unggah file
             if ($request->hasFile('surat_rekomendasi')) {
