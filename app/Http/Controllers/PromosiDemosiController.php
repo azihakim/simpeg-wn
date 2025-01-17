@@ -62,7 +62,7 @@ class PromosiDemosiController extends Controller
 
             return redirect()->route('promosidemosi.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
-            return redirect()->route('promosidemosi.index')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 
