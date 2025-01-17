@@ -45,8 +45,8 @@ class PromosiDemosiController extends Controller
             $validatedData = $request->validate([
                 'id_karyawan' => 'required|integer',
                 'jenis' => 'required|string|max:255',
-                'divisi_lama_id' => 'required',
-                'divisi_baru_id' => 'required',
+                'divisi_lama_id' => 'required|integer',
+                'divisi_baru_id' => 'required|integer',
                 'surat_rekomendasi' => 'required',
             ]);
             // Proses unggah file
