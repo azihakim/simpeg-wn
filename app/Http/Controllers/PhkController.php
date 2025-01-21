@@ -14,6 +14,9 @@ class PhkController extends Controller
     public function index()
     {
         $data = Phk::all();
+        if (auth()->user()->jabatan === 'karyawan') {
+            $data = $data->where('user_id', auth()->id());
+        }
         return view('phk.index', compact('data'));
     }
 
