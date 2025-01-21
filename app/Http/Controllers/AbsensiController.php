@@ -18,6 +18,9 @@ class AbsensiController extends Controller
     public function index()
     {
         $data = Absensi::all();
+        if (auth()->user()->jabatan == 'Karyawan') {
+            $data = Absensi::where('id_karyawan', auth()->user()->id)->get();
+        }
         return view('absensi.index', compact('data'));
     }
 
