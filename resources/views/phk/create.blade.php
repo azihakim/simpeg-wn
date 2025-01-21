@@ -30,8 +30,9 @@
 									<select required name="user_id" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
-											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">{{ $item->nama }} -
-												{{ $item->divisi->nama_jabatan }}</option>
+											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi }}">
+												{{ $item->nama }} - {{ $item->divisi ? $item->divisi->nama_jabatan : 'N/A' }}
+											</option>
 										@endforeach
 									</select>
 								</div>
