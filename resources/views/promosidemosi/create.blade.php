@@ -31,8 +31,8 @@
 									<select name="id_karyawan" class="form-control" id="id_karyawan" style="width:100%">
 										<option value="">Pilih Karyawan</option>
 										@foreach ($karyawan as $item)
-											<option value="{{ $item->id }}"
-												data-divisi_lama="{{ $item->divisi ? $item->divisi->nama_jabatan : '-' }}">
+											<option value="{{ $item->id }}" data-divisi_lama="{{ $item->divisi ? $item->divisi->nama_jabatan : '-' }}"
+												data-divisi_lama_id="{{ $item->divisi_id }}">
 												{{ $item->nama }}
 											</option>
 										@endforeach
@@ -101,7 +101,7 @@
 		document.getElementById('id_karyawan').addEventListener('change', function() {
 			var selectedOption = this.options[this.selectedIndex];
 			var divisiLama = selectedOption.getAttribute('data-divisi_lama');
-			var divisiLamaId = selectedOption.value;
+			var divisiLamaId = selectedOption.getAttribute('data-divisi_lama_id');
 			document.querySelector('input[name="divisi_lama_id"]').value = divisiLamaId;
 			document.querySelector('input[name="divisi_lama_display"]').value = divisiLama;
 		});
