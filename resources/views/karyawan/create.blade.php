@@ -70,13 +70,13 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Telepon</label>
-										<input required type="text" class="form-control" name="telepon">
+										<input required type="number" class="form-control" name="telepon">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>NIK</label>
-										<input required type="text" class="form-control" name="nik">
+										<input required type="number" class="form-control" name="nik">
 									</div>
 								</div>
 								<div class="col-md-4">

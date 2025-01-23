@@ -36,6 +36,7 @@
 							<thead>
 								<tr>
 									<th>Status</th>
+									<th>Jabatan</th>
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
@@ -48,6 +49,7 @@
 								@foreach ($data as $item)
 									<tr>
 										<td>{{ $item->status }}</td>
+										<td>{{ $item->jabatan }} - {{ $item->divisi->nama_jabatan ?? '' }}</td>
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
@@ -59,6 +61,10 @@
 													@method('DELETE')
 													<button type="submit" class="btn btn-danger btn-sm">Delete</button>
 												</form>
+												@if ($item->berkas)
+													<a href="{{ asset('storage/lamaran_files/' . $item->berkas) }}" target="_blank"
+														class="btn btn-info btn-sm">Cek Berkas</a>
+												@endif
 											</td>
 										@endif
 									</tr>

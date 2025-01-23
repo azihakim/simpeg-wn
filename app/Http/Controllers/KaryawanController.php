@@ -62,6 +62,7 @@ class KaryawanController extends Controller
             $karyawan->status = 'Aktif';
             $karyawan->nik = $request->nik;
             $karyawan->jabatan = 'Karyawan';
+            $karyawan->berkas = $pelamar->file;
             // Save the changes
             $karyawan->save();
 
