@@ -46,8 +46,8 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Umur</label>
-										<input required type="text" class="form-control" name="umur" value="{{ $data->umur }}">
+										<label>Tanggal Lahir</label>
+										<input required type="date" class="form-control" name="tgl_lahir" value="{{ $data->tgl_lahir }}">
 									</div>
 								</div>
 								<div class="col-md-4">

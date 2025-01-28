@@ -18,7 +18,7 @@ class RegistrasiController extends Controller
             $data = new User();
             $data->nama = $request->nama;
             $data->telepon = $request->telepon;
-            $data->umur = $request->umur;
+            $data->tgl_lahir = $request->tgl_lahir;
             $data->alamat = $request->alamat;
             $data->jenis_kelamin = $request->jenis_kelamin;
             $data->jabatan = "Pelamar";

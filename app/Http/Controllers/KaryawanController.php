@@ -35,7 +35,7 @@ class KaryawanController extends Controller
         // $request->validate([
         //     'pelamar' => 'required|exists:users,id',
         //     'nama' => 'required|string|max:255',
-        //     'umur' => 'required|numeric',
+        //     'tgl_lahir' => 'required|numeric',
         //     'jenis_kelamin' => 'required|string',
         //     'telepon' => 'required|string|max:15',
         //     'status_kerja' => 'required|string',
@@ -54,7 +54,7 @@ class KaryawanController extends Controller
 
             // Assign the request data to the user
             $karyawan->nama = $request->nama;
-            $karyawan->umur = $request->umur;
+            $karyawan->tgl_lahir = $request->tgl_lahir;
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
             $karyawan->status_kerja = $request->status_kerja;
@@ -87,7 +87,7 @@ class KaryawanController extends Controller
             // Validate input data if necessary
             $validated = $request->validate([
                 'nama' => 'required|string',
-                'umur' => 'required|integer',
+                'tgl_lahir' => 'required|integer',
                 'jenis_kelamin' => 'required|string',
                 'telepon' => 'required|string',
                 'nik' => 'required|string',
@@ -99,7 +99,7 @@ class KaryawanController extends Controller
 
             // Update the employee data
             $karyawan->nama = $request->nama;
-            $karyawan->umur = $request->umur;
+            $karyawan->tgl_lahir = $request->tgl_lahir;
             $karyawan->jenis_kelamin = $request->jenis_kelamin;
             $karyawan->telepon = $request->telepon;
             $karyawan->nik = $request->nik;

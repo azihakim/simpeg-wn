@@ -40,6 +40,7 @@
 									<th>Nama</th>
 									<th>Status Kerja</th>
 									<th>NIK</th>
+									<th>Tanggal Lahir</th>
 									@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 										<th>Aksi</th>
 									@endif
@@ -53,6 +54,7 @@
 										<td>{{ $item->nama }}</td>
 										<td>{{ $item->status_kerja }}</td>
 										<td>{{ $item->nik }}</td>
+										<td>{{ \Carbon\Carbon::parse($item->tgl_lahir)->translatedFormat('d F Y') }}</td>
 										@if (Auth::user()->jabatan == 'Super Admin' || Auth::user()->jabatan == 'Admin')
 											<td>
 												<a href="{{ route('karyawan.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>

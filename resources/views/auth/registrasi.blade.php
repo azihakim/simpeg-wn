@@ -46,8 +46,8 @@
 										placeholder="Nama" required>
 								</div>
 								<div class="form-group">
-									<input type="number" name="umur" class="form-control form-control-lg" id="exampleInputEmail1"
-										placeholder="Umur" required>
+									<input type="date" name="tgl_lahir" class="form-control form-control-lg" id="exampleInputEmail1"
+										placeholder="Tanggal Lahir" required>
 								</div>
 								<div class="form-group">
 									<select name="jenis_kelamin" class="form-control form-control-lg" id="exampleInputEmail1" required>

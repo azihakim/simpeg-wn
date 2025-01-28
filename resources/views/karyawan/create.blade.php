@@ -34,9 +34,10 @@
 								<select name="pelamar" class="form-select js-example-basic-single" id="pelamarSelect" style="width:100%">
 									<option value="">Pilih Calon Karyawan</option>
 									@foreach ($pelamar as $item)
-										<option value="{{ $item->user->id }}" data-nama="{{ $item->user->nama }}" data-umur="{{ $item->user->umur }}"
-											data-alamat="{{ $item->user->alamat }}" data-telepon="{{ $item->user->telepon }}"
-											data-jenis_kelamin="{{ $item->user->jenis_kelamin }}" data-pelamarId="{{ $item->id_pelamar }}">
+										<option value="{{ $item->user->id }}" data-nama="{{ $item->user->nama }}"
+											data-tgl_lahir="{{ $item->user->tgl_lahir }}" data-alamat="{{ $item->user->alamat }}"
+											data-telepon="{{ $item->user->telepon }}" data-jenis_kelamin="{{ $item->user->jenis_kelamin }}"
+											data-pelamarId="{{ $item->id_pelamar }}">
 											{{ $item->user->nama }}
 										</option>
 									@endforeach
@@ -52,8 +53,8 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Umur</label>
-										<input required type="text" class="form-control" name="umur">
+										<label>Tanggal Lahir</label>
+										<input required type="text" class="form-control" name="tgl_lahir">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -114,7 +115,7 @@
 				const selectedOption = this.options[this.selectedIndex];
 
 				// Update text inputs
-				const inputNames = ['nama', 'umur', 'telepon'];
+				const inputNames = ['nama', 'tgl_lahir', 'telepon'];
 				inputNames.forEach(name => {
 					const inputField = document.querySelector(`input[name="${name}"]`);
 					if (inputField) {

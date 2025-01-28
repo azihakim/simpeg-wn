@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nik')->nullable();
             $table->string('telepon')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('umur')->nullable();
+            $table->date('tgl_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('username')->unique();
             $table->string('password');

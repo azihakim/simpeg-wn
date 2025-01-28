@@ -48,13 +48,13 @@ class DatabaseSeeder extends Seeder
             Jabatan::create($j);
         }
 
-        // Lowongan::create(
-        //     [
-        //         'jabatan' => 1,
-        //         'status' => 'aktif',
-        //         'deskripsi' => 'Finance JobDesk',
-        //     ]
-        // );
+        Lowongan::create(
+            [
+                'jabatan' => 1,
+                'status' => 'aktif',
+                'deskripsi' => 'Finance JobDesk',
+            ]
+        );
 
         //   User::create([
         //    'nama' => 'Budi',
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         //    'status' => '',
         //    'status_kerja' => '',
         //    'nik' => '',
-        //    'umur' => '20',
+        //    'tgl_lahir' => '20',
         //    'telepon' => '0812343710',
         //    'alamat' => 'Jl. Sukamaju',
         //    'username' => 'budi',
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
-            'umur' => '20',
+            'tgl_lahir' => '2020-01-01',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
             'username' => 'sa',
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
             'status' => '',
             'status_kerja' => '',
             'nik' => '',
-            'umur' => '20',
+            'tgl_lahir' => '2020-01-01',
             'telepon' => '0812343710',
             'alamat' => 'Jl. Sukamaju',
             'username' => 'Manajer',
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
         //     'status' => '',
         //     'status_kerja' => '',
         //     'nik' => '',
-        //     'umur' => '20',
+        //     'tgl_lahir' => '20',
         //     'telepon' => '0812343710',
         //     'alamat' => 'Jl. Sukamaju',
         //     'username' => 'karyawan',
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
         //     'status' => '',
         //     'status_kerja' => '',
         //     'nik' => '',
-        //     'umur' => '20',
+        //     'tgl_lahir' => '20',
         //     'telepon' => '0812343710',
         //     'alamat' => 'Jl. Sukamaju',
         //     'username' => 'karyawan 2',

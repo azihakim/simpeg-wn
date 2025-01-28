@@ -41,7 +41,7 @@ class User extends Authenticatable
         'status',
         'status_kerja',
         'nik',
-        'umur',
+        'tgl_lahir',
         'telepon',
         'alamat',
         'username',
